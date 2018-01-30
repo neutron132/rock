@@ -79,6 +79,11 @@ all:
 
           vars:
             home_net: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"
+            #To configure each service to monitor specific interfaces, remove
+            #double quotes and commented interface. Then add the desired interfaces
+            suricata_monifs: "" #enp0s8
+            steno_monifs: "" #enp0s8
+
 
           hosts:
             rocksensor1.lan:

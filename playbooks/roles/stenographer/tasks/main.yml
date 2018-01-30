@@ -7,11 +7,22 @@
     name: stenographer
     state: installed
 
-- name: Set stenographer config
+-
+  name: Set stenographer config
+  when: (steno_monifs == "")
   template:
     src: templates/stenographer-config.j2
     dest: "/etc/stenographer/config.{{ item.1 }}"
   with_indexed_items: "{{ rock_monifs }}"
+
+-
+  name: Set stenographer config
+  when: (steno_monifs != "")
+  template:
+    src: templates/stenographer-config.j2
+    dest: "/etc/stenographer/config.{{ item.1 }}"
+  with_indexed_items: "{{ steno_monifs }}"
+
 
 - name: Create Stenographer Rock directory
   file:
